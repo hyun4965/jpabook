@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Item {
+@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity {
     @Id @GeneratedValue
     @Column(name="ITEM_ID")
     private long id;
