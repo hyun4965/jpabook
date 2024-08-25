@@ -9,8 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="ORDERS")
 public class Order extends BaseEntity{
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name="ORDER_ID")
     private long id;
 //    @Column(name="MEMBER_ID")
@@ -20,11 +19,11 @@ public class Order extends BaseEntity{
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<Orderitem> orderitems = new ArrayList<Orderitem>();
 
 
